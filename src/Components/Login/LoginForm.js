@@ -3,45 +3,20 @@ import { Link } from "react-router-dom";
 import Input from "../Forms/Input";
 import Button from "../Forms/Button";
 import useForm from "../../Hooks/useForm";
-import { TOKEN_POST, USER_GET } from "../../api";
+import { UserContext } from "../../UserContext";
 
 const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  // Verificar se já existe um token no localStorage e puxar
-  // React.useEffect só ocorre uma vez quando renderiza a pagina
-  React.useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      getUser(token);
-    }
-  }, []);
-
-  // Função para puxar o usuario
-  async function getUser(token) {
-    const { url, options } = USER_GET(token);
-    const response = await fetch(url, options);
-    const json = await response.json();
-    console.log(json);
-  }
+  const { userLogin } = React.useContext(UserContext);
 
   // Função para validar usuário
   async function handleSubmit(event) {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      const { url, options } = TOKEN_POST({
-        username: username.value,
-        password: password.value,
-      });
-
-      const response = await fetch(url, options);
-      const json = await response.json();
-
-      // Adiconar o token no localstorage
-      window.localStorage.setItem("token", json.token);
-      getUser(json.token);
+      userLogin(username.value, password.value);
     }
   }
 
