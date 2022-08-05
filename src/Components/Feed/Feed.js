@@ -1,6 +1,6 @@
-import React from "react";
-import FeedModal from "./FeedModal";
-import FeedPhotos from "./FeedPhotos";
+import React from 'react';
+import FeedModal from './FeedModal';
+import FeedPhotos from './FeedPhotos';
 
 const Feed = ({ user }) => {
   const [modalPhoto, setModalPhoto] = React.useState(null);
@@ -10,7 +10,7 @@ const Feed = ({ user }) => {
   React.useEffect(() => {
     let wait = false;
     function infiniteScroll() {
-      if (infinite === true) {
+      if (infinite) {
         const scroll = window.scrollY;
         const height = document.body.offsetHeight - window.innerHeight;
         if (scroll > height * 0.75 && !wait) {
@@ -23,11 +23,11 @@ const Feed = ({ user }) => {
       }
     }
 
-    window.addEventListener("wheel", infiniteScroll);
-    window.addEventListener("scroll", infiniteScroll);
+    window.addEventListener('wheel', infiniteScroll);
+    window.addEventListener('scroll', infiniteScroll);
     return () => {
-      window.removeEventListener("wheel", infiniteScroll);
-      window.removeEventListener("scroll", infiniteScroll);
+      window.removeEventListener('wheel', infiniteScroll);
+      window.removeEventListener('scroll', infiniteScroll);
     };
   }, [infinite]);
 
@@ -39,12 +39,23 @@ const Feed = ({ user }) => {
       {pages.map((page) => (
         <FeedPhotos
           key={page}
-          page={page}
           user={user}
+          page={page}
           setModalPhoto={setModalPhoto}
           setInfinite={setInfinite}
         />
       ))}
+      {!infinite && !user && (
+        <p
+          style={{
+            textAlign: 'center',
+            padding: '2rem 0 4rem 0',
+            color: '#888',
+          }}
+        >
+          Não existem mais postagens.
+        </p>
+      )}
     </div>
   );
 };
