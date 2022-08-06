@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const useFetch = () => {
   const [data, setData] = React.useState(null);
@@ -8,7 +8,6 @@ const useFetch = () => {
   const request = React.useCallback(async (url, options) => {
     let response;
     let json;
-
     try {
       setError(null);
       setLoading(true);
@@ -25,7 +24,12 @@ const useFetch = () => {
     }
   }, []);
 
-  return { data, loading, error, request };
+  return {
+    data,
+    loading,
+    error,
+    request,
+  };
 };
 
 export default useFetch;
