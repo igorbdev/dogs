@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-import { ReactComponent as Dogs } from "../Assets/dogs.svg";
-import { useSelector } from "react-redux";
+import React from 'react';
+import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Dogs } from '../Assets/dogs.svg';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const { data } = useSelector((state) => state.user);

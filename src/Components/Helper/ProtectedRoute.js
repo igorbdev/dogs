@@ -1,8 +1,8 @@
-import React from "react";
-import { Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = (props) => {
   const { data } = useSelector((state) => state.user);
 
   if (data) return <Route {...props} />;

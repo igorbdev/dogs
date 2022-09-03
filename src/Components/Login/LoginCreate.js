@@ -1,17 +1,17 @@
-import React from "react";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import Error from "../Helper/Error";
-import useForm from "../../Hooks/useForm";
-import { USER_POST } from "../../Api";
-import useFetch from "../../Hooks/useFetch";
-import Head from "../Helper/Head";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../../store/user";
+import React from 'react';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+import Error from '../Helper/Error';
+import useForm from '../../Hooks/useForm';
+import { USER_POST } from '../../Api';
+import useFetch from '../../Hooks/useFetch';
+import Head from '../Helper/Head';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../../store/user';
 
 const LoginCreate = () => {
   const username = useForm();
-  const email = useForm("email");
+  const email = useForm('email');
   const password = useForm();
 
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const LoginCreate = () => {
     const { response } = await request(url, options);
     if (response.ok)
       dispatch(
-        userLogin({ username: username.value, password: password.value })
+        userLogin({ username: username.value, password: password.value }),
       );
   }
 

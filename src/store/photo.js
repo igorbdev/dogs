@@ -1,8 +1,8 @@
-import { PHOTO_GET } from "../Api";
+import { PHOTO_GET } from '../Api';
 
-const FETCH_PHOTO_STARTED = "photo/fetchStarted";
-const FETCH_PHOTO_SUCCESS = "photo/fetchSuccess";
-const FETCH_PHOTO_ERROR = "photo/fetchError";
+const FETCH_PHOTO_STARTED = 'photo/fetchStarted';
+const FETCH_PHOTO_SUCCESS = 'photo/fetchSuccess';
+const FETCH_PHOTO_ERROR = 'photo/fetchError';
 
 const fetchPhotoStarted = () => ({
   type: FETCH_PHOTO_STARTED,

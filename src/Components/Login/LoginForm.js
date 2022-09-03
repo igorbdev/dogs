@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import useForm from "../../Hooks/useForm";
-import Error from "../Helper/Error";
-import styles from "./LoginForm.module.css";
-import stylesBtn from "../Forms/Button.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import Head from "../Helper/Head";
-import { userLogin } from "../../store/user";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+import useForm from '../../Hooks/useForm';
+import Error from '../Helper/Error';
+import styles from './LoginForm.module.css';
+import stylesBtn from '../Forms/Button.module.css';
+import Head from '../Helper/Head';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../store/user';
 
 const LoginForm = () => {
   const username = useForm();
@@ -17,14 +17,14 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state);
   const loading = token.loading || user.loading;
-  const error = token.loading || user.loading;
+  const error = token.error || user.error;
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
       dispatch(
-        userLogin({ username: username.value, password: password.value })
+        userLogin({ username: username.value, password: password.value }),
       );
     }
   }
@@ -41,7 +41,7 @@ const LoginForm = () => {
         ) : (
           <Button>Entrar</Button>
         )}
-        <Error error={error && "Dados incorretos."} />
+        <Error error={error && 'Dados incorretos.'} />
       </form>
       <Link className={styles.perdeu} to="/login/perdeu">
         Perdeu a Senha?
